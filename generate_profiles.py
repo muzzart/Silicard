@@ -60,8 +60,13 @@ for image_file in image_files:
 			x2 = endX+(abs((endX-startX)-size)//2)+offset
 			# crop the image to the face
 			cropimg = image[max(y1,0):y2-min(0,y1),max(x1,0):x2-min(0,x1)]
+			# open profile tempelate file
+			prof = Image.open("Res/profile.png")
+			# define relative center position for the photo and pasting photo on profile
+			W,H = prof.size
 			# resize the cropped area according to the profile's required size
-			face_size = (390,390)
+			_size=int(W*0.42)
+			face_size = (_size,_size)
 			cropimg = cv2.resize(cropimg, face_size) 
 			# convert openCV image to PIL image
 			cropimg = cv2.cvtColor(cropimg, cv2.COLOR_BGR2RGB)
@@ -74,13 +79,10 @@ for image_file in image_files:
 			# resize and put mask onto the cropped image
 			mask = mask.resize(im.size, Image.ANTIALIAS)
 			im.putalpha(mask)
-			# open profile file
-			prof = Image.open("Res/profile.png")
-			# define relative center position for the photo and pasting photo on profile
-			W,H = prof.size
+			
 			w1, h1 = im.size
 			x_pos = (W-w1)//2
-			y_pos = 172
+			y_pos = int(H/7.35)
 			prof.paste(im,(x_pos,y_pos),im)
 			# find relative position of text write the name on profile
 			draw = ImageDraw.Draw(prof)
@@ -95,7 +97,7 @@ for image_file in image_files:
 			filename = '_'.join(name)
 			w1, h1 = draw.textsize(text.upper(),font)
 			x_pos = (W-w1)//2
-			y_pos = 610
+			y_pos = int(H*0.46)
 			draw.text((x_pos, y_pos),text.upper(),fill='white',font=font)
 
 			font = ImageFont.truetype("Res/CaviarDreams.ttf", 35)
