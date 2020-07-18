@@ -31,7 +31,7 @@ python generate_profiles.py --all
 ```
 This will run the script for all the files in the same directory as the script.
 
-___Disclaimer__: I do not own any of the images, theses are downloaded via a search through google images.
+___Disclaimer__: I do not own any of the images, these are downloaded via a search through google images.
 Pied Piper logo and the name are owned by HBO._
 
 _Script reference credits : [PyImageSearch](https://www.pyimagesearch.com/2018/02/26/face-detection-with-opencv-and-deep-learning/)_
